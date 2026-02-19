@@ -43,6 +43,14 @@ jobs:
           git config --global --add safe.directory '*'
       - name: Run pre-commit checks
         run: |
-          FROM_REF="${{ github.base_ref || 'HEAD~1' }}"
-          git fetch origin $FROM_REF:$FROM_REF || true
-          pre-commit run --from-ref $FROM_REF --to-ref HEAD
+          if [ -n "${{ github.base_ref }}" ]; then
+            FROM_REF="${{ github.base_ref }}"
+            git fetch origin $FROM_REF:$FROM_REF || true
+            pre-commit run --from-ref $FROM_REF --to-ref HEAD
+          elif git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+            FROM_REF="HEAD~1"
+            pre-commit run --from-ref $FROM_REF --to-ref HEAD
+          else
+            echo "No base ref available, running pre-commit on all files"
+            pre-commit run --all-files
+          fi
