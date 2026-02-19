@@ -2,10 +2,10 @@
 
 #include <vector>
 
-#include "kamaletdinov_a_gauss_vertical_scheme/kamaletdinov_a_gauss_vertical_scheme/common/include/common.hpp"
+#include "kamaletdinov_r_gauss_vertical_scheme/kamaletdinov_r_gauss_vertical_scheme/common/include/common.hpp"
 #include "task/include/task.hpp"
 
-namespace kamaletdinov_a_gauss_vertical_scheme {
+namespace kamaletdinov_r_gauss_vertical_scheme {
 
 class KamaletdinovAGaussVerticalSchemeMPI : public BaseTask {
  public:
@@ -39,4 +39,4 @@ class KamaletdinovAGaussVerticalSchemeMPI : public BaseTask {
   int size_{0};
 };
 
-}  // namespace kamaletdinov_a_gauss_vertical_scheme
+}  // namespace kamaletdinov_r_gauss_vertical_scheme

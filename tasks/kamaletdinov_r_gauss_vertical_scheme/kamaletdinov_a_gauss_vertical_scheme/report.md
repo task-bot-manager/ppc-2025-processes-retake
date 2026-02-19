@@ -398,7 +398,7 @@ j = start_col, start_col + size, start_col + 2*size, ...
 ### Код синхронизации строки между процессами
 
 ```cpp
-void KamaletdinovAGaussVerticalSchemeMPI::SynchronizeRow(int k, int row, int cols) {
+void KamaletdinovRGaussVerticalSchemeMPI::SynchronizeRow(int k, int row, int cols) {
   std::vector<double> row_data(cols - k);
   for (int j = k; j < cols; j++) {
     row_data[j - k] = extended_matrix_[(row * cols) + j];
@@ -431,7 +431,7 @@ void KamaletdinovAGaussVerticalSchemeMPI::SynchronizeRow(int k, int row, int col
 ### Код исключения столбца
 
 ```cpp
-void KamaletdinovAGaussVerticalSchemeMPI::EliminateColumn(int k, int cols) {
+void KamaletdinovRGaussVerticalSchemeMPI::EliminateColumn(int k, int cols) {
   double pivot = extended_matrix_[(k * cols) + k];
   if (std::abs(pivot) < 1e-10) {
     return;
