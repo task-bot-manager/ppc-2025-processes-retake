@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "kamaletdinov_a_gauss_vertical_scheme/common/include/common.hpp"
+#include "kamaletdinov_a_gauss_vertical_scheme/kamaletdinov_a_gauss_vertical_scheme/common/include/common.hpp"
 #include "task/include/task.hpp"
 
 namespace kamaletdinov_a_gauss_vertical_scheme {

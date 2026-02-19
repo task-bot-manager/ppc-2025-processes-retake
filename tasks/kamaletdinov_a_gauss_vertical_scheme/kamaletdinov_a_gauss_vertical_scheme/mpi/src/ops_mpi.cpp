@@ -1,4 +1,4 @@
-#include "kamaletdinov_a_gauss_vertical_scheme/mpi/include/ops_mpi.hpp"
+#include "kamaletdinov_a_gauss_vertical_scheme/kamaletdinov_a_gauss_vertical_scheme/mpi/include/ops_mpi.hpp"
 
 #include <mpi.h>
 
@@ -7,7 +7,7 @@
 #include <cstddef>
 #include <vector>
 
-#include "kamaletdinov_a_gauss_vertical_scheme/common/include/common.hpp"
+#include "kamaletdinov_a_gauss_vertical_scheme/kamaletdinov_a_gauss_vertical_scheme/common/include/common.hpp"
 
 namespace kamaletdinov_a_gauss_vertical_scheme {
 
