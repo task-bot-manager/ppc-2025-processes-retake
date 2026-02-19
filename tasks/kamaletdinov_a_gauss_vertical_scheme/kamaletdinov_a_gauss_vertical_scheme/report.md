@@ -33,14 +33,14 @@ A*x = b
 
 ### 2.2 Формат входных данных
 
-Входные данные представляют собой вектор std::vector<double>, где:
+Входные данные представляют собой вектор `std::vector<double>`, где:
 - Первый элемент — размер системы n (тип double, но интерпретируется как int)
 - Далее следуют элементы расширенной матрицы [A|b], записанные построчно
 - Общий размер входного вектора: 1 + n*(n+1)
 
 ### 2.3 Формат выходных данных
 
-Выходные данные — вектор std::vector<double> размером n, содержащий решение системы уравнений.
+Выходные данные — вектор `std::vector<double>` размером n, содержащий решение системы уравнений.
 
 ### 2.4 Ограничения
 
@@ -69,7 +69,7 @@ A*x = b
 
 Начиная с последней строки, последовательно вычисляются значения неизвестных:
 
-x[i] = b[i] - (sum)(j=i+1 to n-1) A[i][j] * x[j]
+`x[i] = b[i] - (sum)(j=i+1 to n-1) A[i][j] * x[j]`
 
 
 ### 3.3 Особенности реализации
@@ -113,7 +113,7 @@ x[i] = b[i] - (sum)(j=i+1 to n-1) A[i][j] * x[j]
    - Процессы обрабатывают столбцы с шагом, равным количеству процессов:
     j = start_col, start_col + size, start_col + 2*size, ...
    - Для каждой строки i (i = k+1..n-1) процесс вычисляет коэффициент
-    factor = A[i][k] и обновляет только свои столбцы: A[i][j] -= factor * A[k][j]
+    `factor = A[i][k]` и обновляет только свои столбцы: `A[i][j] -= factor * A[k][j]`
 
 5. **Синхронизация строк**: После локальных вычислений выполняется синхронизация каждой обработанной строки:
    - Не-root процессы отправляют свои обработанные элементы строки процессу 0 через MPI_Send
@@ -128,7 +128,7 @@ x[i] = b[i] - (sum)(j=i+1 to n-1) A[i][j] * x[j]
 
 1. **Вычисление решения**: Процесс 0 последовательно вычисляет значения неизвестных, начиная с последней строки:
    
-   solution[i] = b[i] - sum(j=i+1 to n-1) A[i][j] * solution[j]
+   `solution[i] = b[i] - sum(j=i+1 to n-1) A[i][j] * solution[j]`
    
 
 2. **Распространение результата**: После вычисления решения на процессе 0,
@@ -397,7 +397,7 @@ j = start_col, start_col + size, start_col + 2*size, ...
 
 ### Код синхронизации строки между процессами
 
-
+```cpp
 void KamaletdinovAGaussVerticalSchemeMPI::SynchronizeRow(int k, int row, int cols) {
   std::vector<double> row_data(cols - k);
   for (int j = k; j < cols; j++) {
@@ -426,12 +426,12 @@ void KamaletdinovAGaussVerticalSchemeMPI::SynchronizeRow(int k, int row, int col
     }
   }
 }
+```
 
+### Код исключения столбца
 
-    ## #Код исключения столбца
-
-void
-    KamaletdinovAGaussVerticalSchemeMPI::EliminateColumn(int k, int cols) {
+```cpp
+void KamaletdinovAGaussVerticalSchemeMPI::EliminateColumn(int k, int cols) {
   double pivot = extended_matrix_[(k * cols) + k];
   if (std::abs(pivot) < 1e-10) {
     return;
@@ -455,4 +455,4 @@ void
     }
   }
 }
-
+```
