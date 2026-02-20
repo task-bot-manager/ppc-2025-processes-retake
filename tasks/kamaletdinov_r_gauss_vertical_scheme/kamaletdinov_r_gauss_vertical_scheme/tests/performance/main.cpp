@@ -83,7 +83,7 @@ TEST_P(KamaletdinovRGaussVerticalSchemeFuncTests, RunPerfModes) {
 }
 
 const auto kAllPerfTasks =
-    ppc::util::MakeAllPerfTasks<InType, KamaletdinovRGaussVerticalSchemeMPI, KamaletdinovRGaussVerticalSchemeMPI>(
+    ppc::util::MakeAllPerfTasks<InType, KamaletdinovRGaussVerticalSchemeMPI, KamaletdinovRGaussVerticalSchemeSEQ>(
         PPC_SETTINGS_kamaletdinov_r_gauss_vertical_scheme);
 
 const auto kGtestValues = ppc::util::TupleToGTestValues(kAllPerfTasks);

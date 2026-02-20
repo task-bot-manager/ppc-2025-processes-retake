@@ -135,7 +135,7 @@ const std::array<TestType, 10> kTestParam = {
 
 const auto kTestTasksList = std::tuple_cat(ppc::util::AddFuncTask<KamaletdinovRGaussVerticalSchemeMPI, InType>(
                                                kTestParam, PPC_SETTINGS_kamaletdinov_r_gauss_vertical_scheme),
-                                           ppc::util::AddFuncTask<KamaletdinovRGaussVerticalSchemeMPI, InType>(
+                                           ppc::util::AddFuncTask<KamaletdinovRGaussVerticalSchemeSEQ, InType>(
                                                kTestParam, PPC_SETTINGS_kamaletdinov_r_gauss_vertical_scheme));
 
 const auto kGtestValues = ppc::util::ExpandToValues(kTestTasksList);
