@@ -7,12 +7,12 @@
 
 namespace kamaletdinov_r_gauss_vertical_scheme {
 
-class KamaletdinovAGaussVerticalSchemeMPI : public BaseTask {
+class KamaletdinovRGaussVerticalSchemeMPI : public BaseTask {
  public:
   static constexpr ppc::task::TypeOfTask GetStaticTypeOfTask() {
     return ppc::task::TypeOfTask::kMPI;
   }
-  explicit KamaletdinovAGaussVerticalSchemeMPI(const InType &in);
+  explicit KamaletdinovRGaussVerticalSchemeMPI(const InType &in);
 
  private:
   bool ValidationImpl() override;
